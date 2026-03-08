@@ -894,25 +894,25 @@ nav {
     position: absolute;
     background: var(--bg);
     border: 1px solid var(--border);
-    padding: 24px 28px;
-    width: 280px;
+    padding: 42px 28px;
+    width: 380px;
 }
 
 .acard:nth-child(1) {
-    top: 0;
+    top: -80px;
     left: 40px;
     transform: rotate(-2deg);
 }
 
 .acard:nth-child(2) {
-    top: 60px;
+    top: 100px;
     left: 10px;
     transform: rotate(1.5deg);
     z-index: 2;
 }
 
 .acard:nth-child(3) {
-    top: 130px;
+    top: 280px;
     left: 60px;
     transform: rotate(-1deg);
     z-index: 3;
