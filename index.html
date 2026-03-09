@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,61 +10,80 @@
   <link href="./styles.css" rel="stylesheet" />
 </head>
 
-<!-- TODO: Implement a light mode / dark mode switch. The current styling is dark mode -->
-
 <body>
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursorRing"></div>
 
   <!-- NAV -->
-  <nav>
+  <nav id="mainNav">
     <a href="#hero" class="nav-logo">
-      <span class="lockup"><span class="b">[</span><span class="bang">!</span>Found<span
-          style="display: inline-block; width: 5px"></span><span class="d">Designs</span><span class="b">]</span></span>
+      <span class="lockup">
+        <span class="b">[</span><span class="bang">!</span>Found
+        <span style="display:inline-block;width:5px"></span>
+        <span class="d">Designs</span><span class="b">]</span>
+      </span>
     </a>
-    <ul class="nav-links">
+
+    <ul class="nav-center">
       <li><a href="#services">Services</a></li>
       <li><a href="#work">Work</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
-    <a href="#contact" class="nav-cta">Get Started</a>
+
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">☀</button>
+      <a href="#contact" class="nav-cta">Get Started</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="nav-drawer" id="navDrawer" aria-hidden="true">
+    <a href="#services" class="drawer-link">Services</a>
+    <a href="#work" class="drawer-link">Work</a>
+    <a href="#about" class="drawer-link">About</a>
+    <a href="#faq" class="drawer-link">FAQ</a>
+    <a href="#contact" class="cta">Get Started →</a>
+  </div>
 
   <!-- HERO -->
   <section id="hero">
     <div class="hero-grid-bg"></div>
-    <div class="hero-glow"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+
     <div class="hero-content">
-      <div class="hero-tag">&lt;!--web design studio--&gt;</div>
-      <div style="opacity: 0; animation: fadeUp 0.7s ease 0.3s forwards">
-        <div style="
-              font-family: &quot;Fira Code&quot;, monospace;
-              font-size: clamp(13px, 1.4vw, 18px);
-              font-weight: 400;
-              color: #3d4260;
-              margin-bottom: 6px;
-              letter-spacing: 0.01em;
-            ">
+      <div class="hero-main">
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          &lt;!-- web design studio --&gt;
+        </div>
+
+        <div class="hero-headline">
+          <span class="bracket">[</span><span style="color:var(--accent2)">!</span>Found<span
+            style="font-weight:300;color:var(--text-dim)"> Designs</span><span class="bracket">]</span>
+        </div>
+
+        <div class="hero-sub">
+          !Found => <strong>We can fix that.</strong>
+        </div>
+
+        <p class="hero-body">
+          Custom websites for local businesses. No templates. No page builders.
+          Just clean, fast, professional sites that help customers find you.
+          One flat monthly rate. No surprises.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">Start Your Site</a>
+          <a href="#work" class="btn-ghost">See the Work</a>
         </div>
       </div>
-      <div class="hero-headline">
-        <span class="bracket">[</span><span style="color: var(--accent2)">!</span>Found<span
-          style="font-weight: 300; color: var(--text-dim)">
-          Designs</span><span class="bracket">]</span>
-      </div>
-      <div class="hero-sub">
-        !Found =>
-        <span style="font-style: normal; color: var(--accent2); font-weight: 700">We can fix that.</span>
-      </div>
-      <p class="hero-body">
-        Custom websites for local businesses. No templates. No page builders. Just clean, fast, professional sites that help customers find you. One flat monthly rate. No surprises.
-      </p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Start Your Site</a>
-        <a href="#work" class="btn-ghost">See the Work</a>
-      </div>
-      <div class="hero-status">
+
+      <div class="hero-stats">
         <div class="stat-block">
           <div class="stat-num">$149</div>
           <div class="stat-label">Starting Price</div>
@@ -80,6 +98,7 @@
         </div>
       </div>
     </div>
+
     <div class="hero-scroll">
       <div class="scroll-line"></div>
       Scroll
@@ -116,25 +135,17 @@
         One price.<br />Everything <span class="accent">included.</span>
       </div>
     </div>
-    <div style="max-width: 1100px; margin: 0 auto 24px; text-align: center" class="reveal">
-      <span style="
-            font-size: 12px;
-            color: var(--light-muted);
-            background: var(--light-bg2);
-            padding: 10px 22px;
-            display: inline-block;
-          ">
-        All plans include a
-        <strong style="color: var(--light-text)">$250 one-time setup fee</strong>
-      </span>
+
+    <div class="setup-note reveal">
+      <span>All plans include a <strong>$250 one-time setup fee</strong></span>
     </div>
-    <div class="pricing-grid reveal" style="grid-template-columns: 1fr 1fr; max-width: 800px; margin: 0 auto">
+
+    <div class="pricing-grid reveal">
       <div class="pricing-card">
         <div class="pricing-name">[Base]</div>
         <div class="pricing-price"><sup>$</sup>149<span>/mo</span></div>
         <div class="pricing-desc">
-          For local businesses that need a clean, professional web presence
-          without the complexity.
+          For local businesses that need a clean, professional web presence without the complexity.
         </div>
         <ul class="feature-list">
           <li class="feature-item">Up to 4 pages</li>
@@ -154,8 +165,7 @@
         <div class="pricing-name">[Launch]</div>
         <div class="pricing-price"><sup>$</sup>199<span>/mo</span></div>
         <div class="pricing-desc">
-          The full package for businesses ready to stand out. More pages.
-          Faster support. Deeper integrations.
+          The full package for businesses ready to stand out. More pages, faster support, deeper integrations.
         </div>
         <ul class="feature-list">
           <li class="feature-item">Up to 8 pages</li>
@@ -177,77 +187,37 @@
     <div class="section-header reveal">
       <div class="section-eyebrow">Sample Work</div>
       <div class="section-title">
-        What your site<br />could
-        <span style="color: var(--accent2)">look like.</span>
+        What your site<br />could <span style="color:var(--accent2)">look like.</span>
       </div>
     </div>
+
     <div class="portfolio-grid reveal">
+      <!-- Wide card -->
       <div class="portfolio-card wide">
         <div class="portfolio-mockup">
           <div class="mock-browser">
             <div class="mock-bar">
-              <div class="mock-dot" style="background: #ff5f57"></div>
-              <div class="mock-dot" style="background: #febc2e"></div>
-              <div class="mock-dot" style="background: #28c840"></div>
+              <div class="mock-dot" style="background:#ff5f57"></div>
+              <div class="mock-dot" style="background:#febc2e"></div>
+              <div class="mock-dot" style="background:#28c840"></div>
               <div class="mock-url">moultonhvac.com</div>
             </div>
             <div class="mock-body">
-              <div class="mock-hero-img theme-hvac" style="
-                    height: 100px;
-                    font-family: &quot;IBM Plex Mono&quot;, monospace;
-                    font-size: 18px;
-                    font-weight: 700;
-                    color: rgba(255, 255, 255, 0.7);
-                  ">
+              <div class="mock-hero-img theme-hvac" style="font-family:'IBM Plex Mono',monospace;font-weight:700;color:rgba(255,255,255,.7)">
                 Moulton HVAC &amp; Cooling
               </div>
-              <div style="
-                    display: grid;
-                    grid-template-columns: 1fr 1fr 1fr;
-                    gap: 8px;
-                    margin-top: 4px;
-                  ">
-                <div style="
-                      background: rgba(74, 127, 212, 0.15);
-                      padding: 10px;
-                      border-radius: 2px;
-                    ">
-                  <div class="mock-h2" style="
-                        width: 80%;
-                        margin-bottom: 6px;
-                        background: #4a7fd4;
-                        opacity: 0.5;
-                      "></div>
-                  <div class="mock-p"></div>
-                  <div class="mock-p short"></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:4px">
+                <div style="background:rgba(74,127,212,.15);padding:10px;border-radius:2px">
+                  <div class="mock-h2" style="width:80%;margin-bottom:6px;background:#4a7fd4;opacity:.5"></div>
+                  <div class="mock-p"></div><div class="mock-p short"></div>
                 </div>
-                <div style="
-                      background: rgba(74, 127, 212, 0.15);
-                      padding: 10px;
-                      border-radius: 2px;
-                    ">
-                  <div class="mock-h2" style="
-                        width: 80%;
-                        margin-bottom: 6px;
-                        background: #4a7fd4;
-                        opacity: 0.5;
-                      "></div>
-                  <div class="mock-p"></div>
-                  <div class="mock-p short"></div>
+                <div style="background:rgba(74,127,212,.15);padding:10px;border-radius:2px">
+                  <div class="mock-h2" style="width:80%;margin-bottom:6px;background:#4a7fd4;opacity:.5"></div>
+                  <div class="mock-p"></div><div class="mock-p short"></div>
                 </div>
-                <div style="
-                      background: rgba(74, 127, 212, 0.15);
-                      padding: 10px;
-                      border-radius: 2px;
-                    ">
-                  <div class="mock-h2" style="
-                        width: 80%;
-                        margin-bottom: 6px;
-                        background: #4a7fd4;
-                        opacity: 0.5;
-                      "></div>
-                  <div class="mock-p"></div>
-                  <div class="mock-p short"></div>
+                <div style="background:rgba(74,127,212,.15);padding:10px;border-radius:2px">
+                  <div class="mock-h2" style="width:80%;margin-bottom:6px;background:#4a7fd4;opacity:.5"></div>
+                  <div class="mock-p"></div><div class="mock-p short"></div>
                 </div>
               </div>
             </div>
@@ -256,9 +226,7 @@
         <div class="portfolio-overlay">
           <div class="portfolio-tag">HVAC / Contractor</div>
           <div class="portfolio-title">Moulton HVAC &amp; Cooling</div>
-          <div class="portfolio-desc">
-            Professional, services-focused site with emergency contact CTA
-          </div>
+          <div class="portfolio-desc">Professional, services-focused site with emergency contact CTA</div>
         </div>
       </div>
 
@@ -266,26 +234,23 @@
         <div class="portfolio-mockup">
           <div class="mock-browser">
             <div class="mock-bar">
-              <div class="mock-dot" style="background: #ff5f57"></div>
-              <div class="mock-dot" style="background: #febc2e"></div>
-              <div class="mock-dot" style="background: #28c840"></div>
+              <div class="mock-dot" style="background:#ff5f57"></div>
+              <div class="mock-dot" style="background:#febc2e"></div>
+              <div class="mock-dot" style="background:#28c840"></div>
               <div class="mock-url">thecutlounge.com</div>
             </div>
             <div class="mock-body">
               <div class="mock-hero-img theme-salon">✂ The Cut Lounge</div>
-              <div class="mock-h1" style="margin: 8px 0 4px"></div>
-              <div class="mock-p"></div>
-              <div class="mock-p short"></div>
-              <div class="mock-btn-sm" style="background: rgba(160, 80, 200, 0.3)"></div>
+              <div class="mock-h1" style="margin:8px 0 4px"></div>
+              <div class="mock-p"></div><div class="mock-p short"></div>
+              <div class="mock-btn-sm" style="background:rgba(160,80,200,.3)"></div>
             </div>
           </div>
         </div>
         <div class="portfolio-overlay">
           <div class="portfolio-tag">Salon / Barbershop</div>
           <div class="portfolio-title">The Cut Lounge</div>
-          <div class="portfolio-desc">
-            Booking-forward design with services menu
-          </div>
+          <div class="portfolio-desc">Booking-forward design with services menu</div>
         </div>
       </div>
 
@@ -293,24 +258,17 @@
         <div class="portfolio-mockup">
           <div class="mock-browser">
             <div class="mock-bar">
-              <div class="mock-dot" style="background: #ff5f57"></div>
-              <div class="mock-dot" style="background: #febc2e"></div>
-              <div class="mock-dot" style="background: #28c840"></div>
+              <div class="mock-dot" style="background:#ff5f57"></div>
+              <div class="mock-dot" style="background:#febc2e"></div>
+              <div class="mock-dot" style="background:#28c840"></div>
               <div class="mock-url">ironwillgym.com</div>
             </div>
             <div class="mock-body">
-              <div class="mock-hero-img theme-gym" style="
-                    font-family: &quot;IBM Plex Mono&quot;, monospace;
-                    font-size: 16px;
-                    font-weight: 700;
-                    color: rgba(255, 100, 100, 0.8);
-                  ">
-                IRON WILL GYM
-              </div>
-              <div class="mock-h1" style="margin: 8px 0 4px; background: #4a1010"></div>
-              <div style="display: flex; gap: 6px; margin-top: 6px">
-                <div class="mock-btn-sm" style="background: rgba(200, 50, 50, 0.3); width: 60px"></div>
-                <div class="mock-btn-sm" style="background: rgba(200, 50, 50, 0.15); width: 60px"></div>
+              <div class="mock-hero-img theme-gym" style="font-family:'IBM Plex Mono',monospace;font-weight:700;color:rgba(255,100,100,.8)">IRON WILL GYM</div>
+              <div class="mock-h1" style="margin:8px 0 4px;background:#4a1010"></div>
+              <div style="display:flex;gap:6px;margin-top:6px">
+                <div class="mock-btn-sm" style="background:rgba(200,50,50,.3);width:60px"></div>
+                <div class="mock-btn-sm" style="background:rgba(200,50,50,.15);width:60px"></div>
               </div>
             </div>
           </div>
@@ -318,9 +276,7 @@
         <div class="portfolio-overlay">
           <div class="portfolio-tag">Fitness / Gym</div>
           <div class="portfolio-title">Iron Will Gym</div>
-          <div class="portfolio-desc">
-            Bold membership-focused site with class schedule
-          </div>
+          <div class="portfolio-desc">Bold membership-focused site with class schedule</div>
         </div>
       </div>
 
@@ -328,32 +284,23 @@
         <div class="portfolio-mockup">
           <div class="mock-browser">
             <div class="mock-bar">
-              <div class="mock-dot" style="background: #ff5f57"></div>
-              <div class="mock-dot" style="background: #febc2e"></div>
-              <div class="mock-dot" style="background: #28c840"></div>
+              <div class="mock-dot" style="background:#ff5f57"></div>
+              <div class="mock-dot" style="background:#febc2e"></div>
+              <div class="mock-dot" style="background:#28c840"></div>
               <div class="mock-url">valleygrillhouse.com</div>
             </div>
             <div class="mock-body">
-              <div class="mock-hero-img theme-restaurant" style="
-                    font-family: &quot;IBM Plex Mono&quot;, monospace;
-                    font-size: 13px;
-                    font-style: italic;
-                    color: rgba(255, 200, 100, 0.8);
-                  ">
-                Valley Grill House
-              </div>
-              <div class="mock-h1" style="margin: 8px 0 4px; background: #5c3317; opacity: 0.6"></div>
+              <div class="mock-hero-img theme-restaurant" style="font-family:'IBM Plex Mono',monospace;font-style:italic;color:rgba(255,200,100,.8)">Valley Grill House</div>
+              <div class="mock-h1" style="margin:8px 0 4px;background:#5c3317;opacity:.6"></div>
               <div class="mock-p"></div>
-              <div class="mock-btn-sm" style="background: rgba(200, 140, 50, 0.3)"></div>
+              <div class="mock-btn-sm" style="background:rgba(200,140,50,.3)"></div>
             </div>
           </div>
         </div>
         <div class="portfolio-overlay">
           <div class="portfolio-tag">Restaurant</div>
           <div class="portfolio-title">Valley Grill House</div>
-          <div class="portfolio-desc">
-            Menu-forward design with hours and reservation link
-          </div>
+          <div class="portfolio-desc">Menu-forward design with hours and reservation link</div>
         </div>
       </div>
 
@@ -361,33 +308,23 @@
         <div class="portfolio-mockup">
           <div class="mock-browser">
             <div class="mock-bar">
-              <div class="mock-dot" style="background: #ff5f57"></div>
-              <div class="mock-dot" style="background: #febc2e"></div>
-              <div class="mock-dot" style="background: #28c840"></div>
+              <div class="mock-dot" style="background:#ff5f57"></div>
+              <div class="mock-dot" style="background:#febc2e"></div>
+              <div class="mock-dot" style="background:#28c840"></div>
               <div class="mock-url">valleyplumbing.com</div>
             </div>
             <div class="mock-body">
-              <div class="mock-hero-img theme-plumber" style="
-                    font-family: &quot;IBM Plex Mono&quot;, monospace;
-                    font-size: 13px;
-                    font-weight: 600;
-                    color: rgba(100, 220, 140, 0.8);
-                  ">
-                Valley Plumbing Co.
-              </div>
-              <div class="mock-h1" style="margin: 8px 0 4px; background: #1a3d20; opacity: 0.7"></div>
-              <div class="mock-p"></div>
-              <div class="mock-p short"></div>
-              <div class="mock-btn-sm" style="background: rgba(40, 160, 80, 0.3)"></div>
+              <div class="mock-hero-img theme-plumber" style="font-family:'IBM Plex Mono',monospace;font-weight:600;color:rgba(100,220,140,.8)">Valley Plumbing Co.</div>
+              <div class="mock-h1" style="margin:8px 0 4px;background:#1a3d20;opacity:.7"></div>
+              <div class="mock-p"></div><div class="mock-p short"></div>
+              <div class="mock-btn-sm" style="background:rgba(40,160,80,.3)"></div>
             </div>
           </div>
         </div>
         <div class="portfolio-overlay">
           <div class="portfolio-tag">Plumbing / Contractor</div>
           <div class="portfolio-title">Valley Plumbing Co.</div>
-          <div class="portfolio-desc">
-            Trust-focused with 24/7 emergency contact
-          </div>
+          <div class="portfolio-desc">Trust-focused with 24/7 emergency contact</div>
         </div>
       </div>
     </div>
@@ -397,15 +334,8 @@
   <section id="about">
     <div class="about-inner">
       <div class="about-text reveal">
-        <div class="section-eyebrow" style="color: var(--accent)">
-          <span style="
-                display: inline-block;
-                width: 24px;
-                height: 1px;
-                background: var(--accent);
-                vertical-align: middle;
-                margin-right: 12px;
-              "></span>
+        <div class="section-eyebrow" style="color:var(--accent)">
+          <span style="display:inline-block;width:24px;height:1px;background:var(--accent);vertical-align:middle;margin-right:12px"></span>
           About
         </div>
         <div class="section-title">
@@ -413,32 +343,29 @@
         </div>
         <div class="about-body">
           <p>
-            I'm a developer based in Moulton, AL — and I got tired of watching
-            local businesses get taken advantage of by overpriced agencies or
-            stuck with generic templates that don't represent them.
+            I'm a developer based in Moulton, AL — and I got tired of watching local businesses
+            get taken advantage of by overpriced agencies or stuck with generic templates that
+            don't represent them.
           </p>
           <p>
-            NotFound Designs exists to give local businesses the same quality
-            website a big company would have, at a price that actually makes
-            sense for a small business.
+            NotFound Designs exists to give local businesses the same quality website a big company
+            would have, at a price that actually makes sense for a small business.
           </p>
         </div>
         <div class="about-detail">
           <span class="detail-icon">01</span>
-          <span class="detail-text">Every site is hand-coded — no Wix, no Squarespace, no
-            drag-and-drop.</span>
+          <span class="detail-text">Every site is hand-coded — no Wix, no Squarespace, no drag-and-drop.</span>
         </div>
         <div class="about-detail">
           <span class="detail-icon">02</span>
-          <span class="detail-text">One flat monthly rate covers everything: design, hosting, domain,
-            and edits.</span>
+          <span class="detail-text">One flat monthly rate covers everything: design, hosting, domain, and edits.</span>
         </div>
         <div class="about-detail">
           <span class="detail-icon">03</span>
-          <span class="detail-text">Local business owner? So am I. I understand what matters to
-            you.</span>
+          <span class="detail-text">Local business owner? So am I. I understand what matters to you.</span>
         </div>
       </div>
+
       <div class="about-visual reveal">
         <div class="about-card-stack">
           <div class="acard">
@@ -465,61 +392,52 @@
   <section id="faq">
     <div class="section-header reveal">
       <div class="section-eyebrow">FAQ</div>
-      <div class="section-title">
-        Common <span style="color: var(--accent2)">questions.</span>
-      </div>
+      <div class="section-title">Common <span style="color:var(--accent2)">questions.</span></div>
     </div>
+
     <div class="faq-grid reveal">
       <div class="faq-item">
         <div class="faq-q">Do I own my website?</div>
         <div class="faq-a">
-          You own all of your content — your text, images, and branding. The
-          subscription covers the hosting and ongoing maintenance. If you ever
-          cancel, we'll give you everything you need to move your site
-          elsewhere.
+          You own all of your content — your text, images, and branding. The subscription covers
+          hosting and ongoing maintenance. If you ever cancel, we'll give you everything you need
+          to move your site elsewhere.
         </div>
       </div>
       <div class="faq-item">
         <div class="faq-q">What counts as a "reasonable edit"?</div>
         <div class="faq-a">
-          Things like updating hours, swapping out images, changing menu
-          items, adding a new team member, or tweaking copy. Basically
-          anything that isn't building a brand new page or feature from
-          scratch.
+          Things like updating hours, swapping out images, changing menu items, adding a new team
+          member, or tweaking copy. Basically anything that isn't building a brand new page or
+          feature from scratch.
         </div>
       </div>
       <div class="faq-item">
         <div class="faq-q">How long does it take to build my site?</div>
         <div class="faq-a">
-          Most sites are ready within 2–3 weeks from when you provide your
-          content. We'll walk you through exactly what we need before we
-          start.
+          Most sites are ready within 2–3 weeks from when you provide your content. We'll walk
+          you through exactly what we need before we start.
         </div>
       </div>
       <div class="faq-item">
         <div class="faq-q">What if I want to cancel?</div>
         <div class="faq-a">
-          No long-term contracts. You can cancel anytime with 30 days notice.
-          We'll help you transition your domain and any content so you're
-          never left stranded.
+          No long-term contracts. You can cancel anytime with 30 days notice. We'll help you
+          transition your domain and any content so you're never left stranded.
         </div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">
-          Do you work with businesses outside of Moulton?
-        </div>
+        <div class="faq-q">Do you work with businesses outside of Moulton?</div>
         <div class="faq-a">
-          Absolutely. We're based in Moulton but work with clients anywhere.
-          Everything is handled remotely — calls, emails, and a shared doc for
-          content review.
+          Absolutely. We're based in Moulton but work with clients anywhere. Everything is handled
+          remotely — calls, emails, and a shared doc for content review.
         </div>
       </div>
       <div class="faq-item">
         <div class="faq-q">What do I need to get started?</div>
         <div class="faq-a">
-          Just reach out. We'll send you a quick onboarding form to gather
-          your logo, brand colors, content, and goals. From there we handle
-          the rest.
+          Just reach out. We'll send you a quick onboarding form to gather your logo, brand colors,
+          content, and goals. From there we handle the rest.
         </div>
       </div>
     </div>
@@ -532,12 +450,11 @@
       <div class="reveal">
         <div class="section-eyebrow">Contact</div>
         <div class="section-title">
-          Let's get you<br /><span style="color: var(--accent2)">found.</span>
+          Let's get you<br /><span style="color:var(--accent2)">found.</span>
         </div>
         <p class="contact-body">
-          Ready to stop being invisible online? Fill out the form and we'll
-          get back to you within one business day to talk through your
-          project.
+          Ready to stop being invisible online? Fill out the form and we'll get back to you
+          within one business day to talk through your project.
         </p>
         <div class="contact-detail">
           <span class="contact-detail-label">Location</span>
@@ -552,6 +469,7 @@
           <span class="contact-detail-val">Within 1 business day</span>
         </div>
       </div>
+
       <div class="reveal">
         <form class="contact-form" onsubmit="handleSubmit(event)">
           <div class="form-row">
@@ -595,16 +513,22 @@
     </div>
   </section>
 
-  <!-- TODO: Create a "Back to top" button that smoothly scrolls back to the top of the site.
-        Only display the button after the user has started scrolling  -->
+  <!-- BACK TO TOP -->
+  <a href="#hero" class="back-to-top" id="backToTop" aria-label="Back to top">↑</a>
 
   <!-- FOOTER -->
   <footer>
     <div class="footer-logo">
-      <span class="comment"><span class="tag">&lt;!</span><span class="dash">--</span> web design
-        studio <span class="dash">--</span><span class="tag">&gt;</span></span>
-      <span class="lockup"><span class="b">[</span><span class="bang">!</span>Found<span
-          style="display: inline-block; width: 5px"></span><span class="d">Designs</span><span class="b">]</span></span>
+      <span class="comment">
+        <span class="tag">&lt;!</span><span class="dash">--</span>
+        web design studio
+        <span class="dash">--</span><span class="tag">&gt;</span>
+      </span>
+      <span class="lockup">
+        <span class="b">[</span><span class="bang">!</span>Found
+        <span style="display:inline-block;width:5px"></span>
+        <span class="d">Designs</span><span class="b">]</span>
+      </span>
     </div>
     <div class="footer-copy">© 2026 NotFound Designs · Moulton, AL</div>
     <ul class="footer-links">
@@ -613,6 +537,7 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
   </footer>
+
   <script src="./app.js"></script>
 </body>
 </html>
