@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Site Builder vs. Custom Site | NotFound Designs</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet" />
+  <style>
+    @page { size: letter portrait; margin: 0; }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: #fff;
+      color: #1a1e2e;
+      width: 8.5in;
+      min-height: 11in;
+      margin: 0 auto;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: #0a0c12;
+      padding: 32px 48px 28px;
+      display: flex; align-items: flex-end; justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 20px; font-weight: 700; color: #dde3f8;
+      display: flex; flex-direction: column; gap: 3px;
+    }
+    .logo-tag { font-size: 9px; color: #353a5c; letter-spacing: 0.25em; text-transform: uppercase; }
+    .logo-lockup { display: flex; align-items: center; }
+    .logo .b { color: #7aa8f0; font-weight: 300; font-size: 24px; }
+    .logo .bang { color: #7aa8f0; }
+    .logo .d { color: #9ea5cc; font-weight: 300; }
+
+    .header-right {
+      text-align: right; font-size: 10px; color: #5a618a; line-height: 1.6;
+    }
+    .header-right strong { color: #9ea5cc; }
+
+    /* ── TITLE BAND ── */
+    .title-band {
+      padding: 28px 48px;
+      background: #f4f6fb;
+      border-bottom: 2px solid #4a7fd4;
+    }
+
+    .doc-eyebrow {
+      font-size: 9px; color: #4a7fd4; letter-spacing: 0.3em; text-transform: uppercase;
+      margin-bottom: 8px; display: flex; align-items: center; gap: 8px;
+    }
+    .doc-eyebrow::before { content: ''; width: 18px; height: 1px; background: #4a7fd4; }
+
+    .doc-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 24px; font-weight: 700; color: #0f1225;
+      line-height: 1.1;
+    }
+    .doc-title span { color: #4a7fd4; }
+
+    .doc-subtitle {
+      font-size: 11px; color: #6b7299; margin-top: 6px; line-height: 1.5;
+    }
+
+    /* ── CONTENT ── */
+    .content {
+      padding: 32px 48px;
+      display: flex; flex-direction: column; gap: 24px;
+    }
+
+    /* ── COMPARISON TABLE ── */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .comparison-table thead tr {
+      background: #0a0c12;
+    }
+
+    .comparison-table th {
+      padding: 14px 16px;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      text-align: left;
+    }
+
+    .th-feature { color: #5a618a; width: 30%; }
+    .th-builder { color: #e87070; width: 35%; }
+    .th-custom { color: #7aa8f0; width: 35%; }
+
+    .th-builder-inner, .th-custom-inner {
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    .th-brand { font-size: 8px; color: #353a5c; font-weight: 400; letter-spacing: 0.1em; }
+
+    .comparison-table tbody tr {
+      border-bottom: 1px solid #edf0f9;
+    }
+    .comparison-table tbody tr:nth-child(even) {
+      background: #f9fafd;
+    }
+
+    .comparison-table td {
+      padding: 11px 16px;
+      font-size: 10px; vertical-align: top; line-height: 1.5;
+    }
+
+    .td-feature { color: #2a3060; font-weight: 600; }
+    .td-feature .feat-sub { font-weight: 400; color: #8a93b8; font-size: 9px; margin-top: 2px; }
+
+    .td-builder { color: #6b7299; }
+    .td-custom { color: #2a3060; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 9px; padding: 2px 7px;
+      border-radius: 2px; font-weight: 600; letter-spacing: 0.05em;
+    }
+    .badge-bad { background: #fef0f0; color: #c0404040; color: #b04040; }
+    .badge-ok  { background: #fdf6e8; color: #9a6820; }
+    .badge-good{ background: #edf8f0; color: #2a7a45; }
+
+    /* ── THE REAL COST SECTION ── */
+    .cost-section {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    }
+
+    .cost-card {
+      padding: 20px 18px;
+      background: #f4f6fb;
+    }
+
+    .cost-card.dark {
+      background: #0a0c12;
+    }
+
+    .cost-header {
+      font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 14px; padding-bottom: 10px;
+      border-bottom: 1px solid #e0e4f0;
+      color: #8a93b8;
+    }
+
+    .cost-card.dark .cost-header {
+      color: #353a5c; border-color: #1e2130;
+    }
+
+    .cost-header strong { color: #e87070; }
+    .cost-card.dark .cost-header strong { color: #7aa8f0; }
+
+    .cost-line {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-size: 10px; padding: 6px 0; border-bottom: 1px solid #edf0f9;
+    }
+    .cost-card.dark .cost-line { border-color: #1a1d2e; }
+
+    .cost-label { color: #6b7299; }
+    .cost-card.dark .cost-label { color: #5a618a; }
+
+    .cost-amount { font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: #2a3060; }
+    .cost-card.dark .cost-amount { color: #9ea5cc; }
+
+    .cost-total {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-top: 10px; padding-top: 8px;
+      font-size: 11px; font-weight: 700;
+    }
+    .cost-total-label { color: #2a3060; }
+    .cost-card.dark .cost-total-label { color: #dde3f8; }
+    .cost-total-amount {
+      font-family: 'IBM Plex Mono', monospace; font-size: 18px; color: #e87070;
+    }
+    .cost-card.dark .cost-total-amount { color: #7aa8f0; }
+
+    .cost-note {
+      font-size: 8px; color: #8a93b8; margin-top: 10px; line-height: 1.5;
+    }
+    .cost-card.dark .cost-note { color: #353a5c; }
+
+    /* ── CALLOUTS ── */
+    .callouts {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    }
+
+    .callout {
+      background: #f4f6fb; padding: 16px 14px;
+    }
+
+    .callout-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 28px; font-weight: 700; color: #e0e4f0; line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .callout-title {
+      font-size: 10px; font-weight: 600; color: #2a3060;
+      margin-bottom: 4px; letter-spacing: 0.05em;
+    }
+
+    .callout-body {
+      font-size: 9px; color: #6b7299; line-height: 1.6;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 9px; color: #4a7fd4; letter-spacing: 0.3em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+    }
+    .section-label::before { content: ''; width: 18px; height: 1px; background: #4a7fd4; }
+
+    /* ── BOTTOM CTA ── */
+    .cta-band {
+      background: #4a7fd4;
+      padding: 22px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .cta-text {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 15px; font-weight: 700; color: #fff;
+    }
+    .cta-text span { font-style: italic; font-weight: 300; opacity: 0.8; font-size: 12px; display: block; margin-top: 2px; }
+
+    .cta-box {
+      background: rgba(255,255,255,0.15);
+      padding: 12px 24px; text-align: right;
+    }
+    .cta-url {
+      font-size: 13px; font-weight: 600; color: #fff; letter-spacing: 0.05em;
+    }
+    .cta-email {
+      font-size: 10px; color: rgba(255,255,255,0.7); margin-top: 2px;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #0a0c12; padding: 16px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px; font-weight: 700; color: #5a618a;
+      display: flex; align-items: center;
+    }
+    .footer-logo .b { color: #353a5c; font-weight: 300; font-size: 13px; }
+    .footer-copy { font-size: 9px; color: #2a3060; }
+
+    @media print {
+      body { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo">
+      <span class="logo-tag">&lt;!-- web design studio --&gt;</span>
+      <span class="logo-lockup">
+        <span class="b">[</span><span class="bang">!</span>Found
+        <span style="display:inline-block;width:4px"></span>
+        <span class="d">Designs</span><span class="b">]</span>
+      </span>
+    </div>
+    <div class="header-right">
+      <strong>notfounddesigns.com</strong>
+      hello@notfounddesigns.com &nbsp;·&nbsp; Moulton, AL
+    </div>
+  </div>
+
+  <!-- TITLE BAND -->
+  <div class="title-band">
+    <div class="doc-eyebrow">Comparison Guide</div>
+    <div class="doc-title">Site Builder <span>vs.</span> Custom Website</div>
+    <div class="doc-subtitle">Why a custom-built site beats Wix, Squarespace, and GoDaddy — and what it actually costs either way.</div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- COMPARISON TABLE -->
+    <div>
+      <div class="section-label">Feature Comparison</div>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th class="th-feature">Feature</th>
+            <th class="th-builder">
+              <div class="th-builder-inner">
+                <span>Site Builder</span>
+                <span class="th-brand">Wix / Squarespace / GoDaddy</span>
+              </div>
+            </th>
+            <th class="th-custom">
+              <div class="th-custom-inner">
+                <span>Custom Site</span>
+                <span class="th-brand">NotFound Designs</span>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-feature">Design Quality<div class="feat-sub">How unique your site looks</div></td>
+            <td class="td-builder"><span class="badge badge-bad">✗ Template-based</span><br><span style="margin-top:4px;display:block">Looks like thousands of other sites. Limited customization that often requires workarounds.</span></td>
+            <td class="td-custom"><span class="badge badge-good">✓ 100% Custom</span><br><span style="margin-top:4px;display:block">Built from scratch to match your brand. No one else has your design.</span></td>
+          </tr>
+          <tr>
+            <td class="td-feature">Page Speed<div class="feat-sub">How fast your site loads</div></td>
+            <td class="td-builder"><span class="badge badge-bad">✗ Slow</span><br><span style="margin-top:4px;display:block">Bloated builder code, excess scripts, and poor optimization hurt Google rankings.</span></td>
+            <td class="td-custom"><span class="badge badge-good">✓ Fast (&lt; 1s)</span><br><span style="margin-top:4px;display:block">Hand-written code is lean. No builder bloat. Fast sites rank higher and convert better.</span></td>
+          </tr>
+          <tr>
+            <td class="td-feature">SEO<div class="feat-sub">How easily Google finds you</div></td>
+            <td class="td-builder"><span class="badge badge-ok">~ Basic</span><br><span style="margin-top:4px;display:block">Basic SEO tools exist but messy code and slow speeds undercut your ranking potential.</span></td>
+            <td class="td-custom"><span class="badge badge-good">✓ Optimized</span><br><span style="margin-top:4px;display:block">Proper structure, semantic HTML, fast load, and local SEO built in from the start.</span></td>
+          </tr>
+          <tr>
+            <td class="td-feature">Ownership<div class="feat-sub">Who owns your site</div></td>
+            <td class="td-builder"><span class="badge badge-bad">✗ Platform owns it</span><br><span style="margin-top:4px;display:block">Your site lives inside their ecosystem. If they change pricing or shut down, you're stuck.</span></td>
+            <td class="td-custom"><span class="badge badge-good">✓ You own your content</span><br><span style="margin-top:4px;display:block">All your content and assets are yours. Cancel anytime and take everything with you.</span></td>
+          </tr>
+          <tr>
+            <td class="td-feature">Ongoing Updates<div class="feat-sub">Making changes to your site</div></td>
+            <td class="td-builder"><span class="badge badge-ok">~ DIY</span><br><span style="margin-top:4px;display:block">You do it yourself, or pay for a plan that includes "support." Takes time you don't have.</span></td>
+            <td class="td-custom"><span class="badge badge-good">✓ Included</span><br><span style="margin-top:4px;display:block">Reasonable edits are included. Just send us what you need and we handle it.</span></td>
+          </tr>
+          <tr>
+            <td class="td-feature">Support<div class="feat-sub">Who helps when things break</div></td>
+            <td class="td-builder"><span class="badge badge-bad">✗ Generic helpdesk</span><br><span style="margin-top:4px;display:block">Chat with an offshore support rep who doesn't know your business.</span></td>
+            <td class="td-custom"><span class="badge badge-good">✓ Direct access</span><br><span style="margin-top:4px;display:block">You contact the developer directly. We know your site inside and out.</span></td>
+          </tr>
+          <tr>
+            <td class="td-feature">Mobile Experience<div class="feat-sub">How it looks on phones</div></td>
+            <td class="td-builder"><span class="badge badge-ok">~ Hit or miss</span><br><span style="margin-top:4px;display:block">Responsive tools exist but often require separate mobile editing and produce inconsistent results.</span></td>
+            <td class="td-custom"><span class="badge badge-good">✓ Responsive by design</span><br><span style="margin-top:4px;display:block">Built mobile-first. Every element is tested across phones, tablets, and desktops.</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- REAL COST COMPARISON -->
+    <div>
+      <div class="section-label">The Real Cost (Year 1)</div>
+      <div class="cost-section">
+
+        <div class="cost-card">
+          <div class="cost-header"><strong>Site Builder</strong> — What You Actually Pay</div>
+          <div class="cost-line">
+            <span class="cost-label">Wix Business Plan (e.g.)</span>
+            <span class="cost-amount">$348/yr</span>
+          </div>
+          <div class="cost-line">
+            <span class="cost-label">Custom domain (not included)</span>
+            <span class="cost-amount">$15/yr</span>
+          </div>
+          <div class="cost-line">
+            <span class="cost-label">Business email (add-on)</span>
+            <span class="cost-amount">$72/yr</span>
+          </div>
+          <div class="cost-line">
+            <span class="cost-label">Your time to build it (est. 40 hrs)</span>
+            <span class="cost-amount">$???</span>
+          </div>
+          <div class="cost-line">
+            <span class="cost-label">Your time for ongoing updates</span>
+            <span class="cost-amount">$???</span>
+          </div>
+          <div class="cost-line">
+            <span class="cost-label">Lost customers (slow/bad site)</span>
+            <span class="cost-amount">$???</span>
+          </div>
+          <div class="cost-total">
+            <span class="cost-total-label">Known costs alone:</span>
+            <span class="cost-total-amount">$435+</span>
+          </div>
+          <div class="cost-note">Not including your time, lost business from a slow or unprofessional-looking site, or the cost of eventually hiring someone to fix it anyway.</div>
+        </div>
+
+        <div class="cost-card dark">
+          <div class="cost-header"><strong>NotFound Designs</strong> — Everything Included</div>
+          <div class="cost-line">
+            <span class="cost-label">One-time setup fee</span>
+            <span class="cost-amount">$250</span>
+          </div>
+          <div class="cost-line">
+            <span class="cost-label">Monthly rate (Launch plan)</span>
+            <span class="cost-amount">$199/mo</span>
+          </div>
+          <div class="cost-line">
+            <span class="cost-label">Domain &amp; hosting</span>
+            <span class="cost-amount">Included</span>
+          </div>
+          <div class="cost-line">
+            <span class="cost-label">Business email setup</span>
+            <span class="cost-amount">Included</span>
+          </div>
+          <div class="cost-line">
+            <span class="cost-label">Ongoing edits &amp; updates</span>
+            <span class="cost-amount">Included</span>
+          </div>
+          <div class="cost-line">
+            <span class="cost-label">Your time to manage it</span>
+            <span class="cost-amount">~0</span>
+          </div>
+          <div class="cost-total">
+            <span class="cost-total-label">Year 1 total:</span>
+            <span class="cost-total-amount">$2,638</span>
+          </div>
+          <div class="cost-note">For a professional, fast, custom site — maintained, updated, and supported. No surprises. No hidden fees. No wasted time.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CALLOUTS -->
+    <div>
+      <div class="section-label">Why it matters for local business</div>
+      <div class="callouts">
+        <div class="callout">
+          <div class="callout-num">75%</div>
+          <div class="callout-title">Credibility from design</div>
+          <div class="callout-body">75% of people judge a business's credibility based on its website design. A template site can cost you customers before they even call.</div>
+        </div>
+        <div class="callout">
+          <div class="callout-num">53%</div>
+          <div class="callout-title">Bounce rate on slow sites</div>
+          <div class="callout-body">53% of mobile visitors leave a site that takes more than 3 seconds to load. Builder bloat is the #1 cause of slow local business sites.</div>
+        </div>
+        <div class="callout">
+          <div class="callout-num">46%</div>
+          <div class="callout-title">Searches are local</div>
+          <div class="callout-body">46% of all Google searches have local intent. A properly optimized custom site dramatically increases your odds of showing up when it counts.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <div class="cta-text">
+      Ready to get found?
+      <span>Let's build something that actually works for your business.</span>
+    </div>
+    <div class="cta-box">
+      <div class="cta-url">notfounddesigns.com</div>
+      <div class="cta-email">hello@notfounddesigns.com</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-logo">
+      <span class="b">[</span><span class="bang" style="color:#353a5c">!</span>Found
+      <span style="display:inline-block;width:4px"></span>
+      Designs<span class="b">]</span>
+    </div>
+    <div class="footer-copy">© 2026 NotFound Designs · Moulton, AL</div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Barber Shop — Moulton, AL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0d0b09;
+      --bg2: #141210;
+      --bg3: #1c1915;
+      --border: #2a2520;
+      --muted: #4a4035;
+      --text-dim: #7a6e5f;
+      --text: #c8b89a;
+      --text-bright: #f0e8d8;
+      --gold: #c8973a;
+      --gold2: #e8b85a;
+      --gold-dim: #3a2c10;
+      --cream: #f5edd8;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 clamp(20px, 5vw, 64px);
+      height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(13, 11, 9, 0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.3s;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 700;
+      color: var(--text-bright);
+      text-decoration: none;
+      display: flex; flex-direction: column; gap: 1px; line-height: 1;
+    }
+
+    .nav-logo-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px; color: var(--gold);
+      letter-spacing: 0.3em; text-transform: uppercase; font-weight: 400;
+    }
+
+    .nav-links {
+      display: flex; gap: 36px; list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px; color: var(--text-dim);
+      text-decoration: none; letter-spacing: 0.15em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-phone {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px; font-weight: 500;
+      color: var(--gold); text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .nav-phone:hover { color: var(--gold2); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding: clamp(100px, 14vh, 140px) clamp(24px, 5vw, 80px) 80px;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 70% 50%, rgba(200, 151, 58, 0.06) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 50% at 20% 60%, rgba(200, 151, 58, 0.04) 0%, transparent 60%);
+    }
+
+    /* Diagonal stripe texture */
+    .hero-texture {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 40px,
+        rgba(200, 151, 58, 0.012) 40px,
+        rgba(200, 151, 58, 0.012) 41px
+      );
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px; color: var(--gold);
+      letter-spacing: 0.4em; text-transform: uppercase;
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 12px;
+      opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards;
+    }
+    .hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
+
+    .hero-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 7vw, 88px);
+      font-weight: 900; line-height: 0.95;
+      color: var(--text-bright);
+      margin-bottom: 24px;
+      opacity: 0; animation: fadeUp 0.75s ease 0.25s forwards;
+    }
+
+    .hero-headline em {
+      font-style: italic; color: var(--gold);
+    }
+
+    .hero-body {
+      font-size: clamp(14px, 1.5vw, 16px);
+      color: var(--text-dim); line-height: 1.8;
+      max-width: 420px; margin-bottom: 44px;
+      opacity: 0; animation: fadeUp 0.75s ease 0.4s forwards;
+    }
+
+    .hero-actions {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.75s ease 0.55s forwards;
+    }
+
+    .btn-gold {
+      padding: 15px 36px;
+      background: var(--gold); color: var(--bg);
+      font-family: 'DM Mono', monospace;
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      text-decoration: none; font-weight: 500;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-gold:hover { background: var(--gold2); transform: translateY(-2px); }
+
+    .btn-outline {
+      padding: 14px 32px;
+      background: transparent; color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, color 0.2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* Hero right side — barber pole + stats */
+    .hero-right {
+      display: flex; flex-direction: column; gap: 24px; align-items: flex-end;
+      opacity: 0; animation: fadeIn 0.8s ease 0.8s forwards;
+    }
+
+    /* Decorative barber pole */
+    .barber-pole {
+      width: 60px; height: 200px;
+      border-radius: 30px;
+      background: #1c1915;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .barber-pole-inner {
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        #b0281e,
+        #b0281e 8px,
+        #f0e8d8 8px,
+        #f0e8d8 16px,
+        #1a4a8a 16px,
+        #1a4a8a 24px,
+        #f0e8d8 24px,
+        #f0e8d8 32px
+      );
+      animation: poleSpin 4s linear infinite;
+    }
+
+    @keyframes poleSpin {
+      from { background-position: 0 0; }
+      to { background-position: 0 -96px; }
+    }
+
+    .hero-stats {
+      display: flex; flex-direction: column; gap: 2px;
+      width: 100%;
+    }
+
+    .hero-stat {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 20px 24px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .hero-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px; font-weight: 900; color: var(--gold);
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px; color: var(--text-dim);
+      letter-spacing: 0.2em; text-transform: uppercase;
+      text-align: right;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-strip {
+      background: var(--gold); padding: 12px 0;
+      overflow: hidden; white-space: nowrap;
+    }
+    .marquee-inner {
+      display: inline-flex;
+      animation: marquee 20s linear infinite;
+    }
+    .marquee-item {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--bg); padding: 0 32px;
+      display: flex; align-items: center; gap: 32px;
+    }
+    .marquee-item::after { content: '✦'; color: rgba(0,0,0,0.3); }
+
+    @keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+
+    /* ── SERVICES ── */
+    #services {
+      padding: clamp(64px, 8vw, 100px) clamp(24px, 5vw, 80px);
+      background: var(--bg2);
+    }
+
+    .section-header {
+      max-width: 1100px; margin: 0 auto clamp(40px, 5vw, 64px);
+      display: flex; justify-content: space-between; align-items: flex-end;
+    }
+
+    .section-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px; color: var(--gold);
+      letter-spacing: 0.35em; text-transform: uppercase;
+      margin-bottom: 12px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 44px); font-weight: 700;
+      color: var(--text-bright); line-height: 1.1;
+    }
+
+    .section-note {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px; color: var(--text-dim); text-align: right;
+      line-height: 1.6;
+    }
+
+    .services-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    }
+
+    .service-card {
+      background: var(--bg3);
+      padding: clamp(24px, 3vw, 36px);
+      border-top: 2px solid transparent;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .service-card:hover {
+      border-color: var(--gold);
+      background: var(--bg);
+    }
+
+    .service-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px; font-weight: 900; color: var(--gold);
+      line-height: 1; margin-bottom: 12px;
+    }
+    .service-price sup { font-size: 20px; vertical-align: super; font-weight: 400; }
+
+    .service-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 700; color: var(--text-bright);
+      margin-bottom: 8px;
+    }
+
+    .service-desc {
+      font-size: 12px; color: var(--text-dim); line-height: 1.7;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      padding: clamp(64px, 8vw, 100px) clamp(24px, 5vw, 80px);
+      background: var(--bg);
+    }
+
+    .about-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(48px, 7vw, 80px); align-items: center;
+    }
+
+    .about-body {
+      font-size: clamp(13px, 1.5vw, 15px); color: var(--text-dim);
+      line-height: 1.9; margin: 24px 0 32px;
+    }
+    .about-body p + p { margin-top: 14px; }
+
+    .about-detail {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 14px 0; border-top: 1px solid var(--border);
+    }
+    .about-detail:last-child { border-bottom: 1px solid var(--border); }
+
+    .about-detail-icon {
+      color: var(--gold); font-size: 16px; flex-shrink: 0; width: 24px;
+    }
+
+    .about-detail-text {
+      font-size: 12px; color: var(--text-dim); line-height: 1.6;
+    }
+
+    /* Decorative image block */
+    .about-visual {
+      position: relative;
+    }
+
+    .about-img-frame {
+      width: 100%; aspect-ratio: 4/5;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* SVG barber scissors decoration */
+    .barber-deco {
+      font-size: 80px; opacity: 0.08; user-select: none;
+      position: absolute;
+    }
+
+    .about-img-text {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(13,11,9,0.98), transparent);
+      padding: 28px 24px;
+    }
+
+    .about-img-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 700; color: var(--text-bright);
+      margin-bottom: 4px;
+    }
+
+    .about-img-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px; color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase;
+    }
+
+    .about-badge {
+      position: absolute; top: 24px; right: 24px;
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--gold); color: var(--bg);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+    }
+    .badge-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 900; line-height: 1;
+    }
+    .badge-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 7px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      line-height: 1.3; margin-top: 2px;
+    }
+
+    /* ── WALK-IN SECTION ── */
+    #walkin {
+      background: var(--gold);
+      padding: clamp(48px, 6vw, 72px) clamp(24px, 5vw, 80px);
+    }
+
+    .walkin-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 40px; flex-wrap: wrap;
+    }
+
+    .walkin-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 44px); font-weight: 900;
+      color: var(--bg); line-height: 1.1;
+    }
+    .walkin-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px; color: rgba(0,0,0,0.5);
+      letter-spacing: 0.1em; margin-top: 8px;
+    }
+
+    .walkin-details {
+      display: flex; gap: 32px; flex-wrap: wrap;
+    }
+
+    .walkin-detail {
+      text-align: center;
+    }
+    .walkin-detail-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px; color: rgba(0,0,0,0.4);
+      letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 4px;
+    }
+    .walkin-detail-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 700; color: var(--bg);
+    }
+
+    /* ── HOURS ── */
+    #hours {
+      padding: clamp(64px, 8vw, 100px) clamp(24px, 5vw, 80px);
+      background: var(--bg2);
+    }
+
+    .hours-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(48px, 7vw, 80px);
+    }
+
+    .hours-table { width: 100%; }
+
+    .hours-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 13px 0; border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .hours-day { color: var(--text); }
+    .hours-time { font-family: 'DM Mono', monospace; color: var(--gold); font-size: 12px; }
+    .hours-closed { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 12px; }
+
+    .hours-note {
+      margin-top: 20px; padding: 16px;
+      background: var(--gold-dim); border-left: 2px solid var(--gold);
+      font-family: 'DM Mono', monospace;
+      font-size: 10px; color: var(--gold); letter-spacing: 0.05em; line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg);
+      padding: clamp(40px, 5vw, 64px) clamp(24px, 5vw, 80px) clamp(24px, 3vw, 36px);
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 40px; flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 700; color: var(--text-bright);
+      display: flex; flex-direction: column; gap: 4px;
+    }
+
+    .footer-logo-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px; color: var(--gold); letter-spacing: 0.25em; text-transform: uppercase;
+    }
+
+    .footer-info {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px; color: var(--text-dim); line-height: 1.9;
+    }
+    .footer-info a { color: var(--gold); text-decoration: none; }
+
+    .footer-copy {
+      max-width: 1100px; margin: clamp(24px, 4vw, 40px) auto 0;
+      padding-top: 20px; border-top: 1px solid var(--border);
+      font-family: 'DM Mono', monospace;
+      font-size: 9px; color: var(--muted);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-right { flex-direction: row; align-items: center; gap: 16px; }
+      .barber-pole { display: none; }
+      .about-inner { grid-template-columns: 1fr; }
+      .about-visual { display: none; }
+      .hours-inner { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">
+      The Barber Shop
+      <span class="nav-logo-sub">Moulton, AL · Est. Walk-ins Welcome</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#hours">Hours</a></li>
+    </ul>
+    <a href="tel:2566168233" class="nav-phone">(256) 616-8233</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-texture"></div>
+    <div class="hero-content">
+      <div class="hero-main">
+        <div class="hero-eyebrow">Moulton, Alabama · Est. Walk-In Barbershop</div>
+        <div class="hero-headline">
+          Good Cuts.<br /><em>Great People.</em><br />No Wait List.
+        </div>
+        <p class="hero-body">
+          Walk-in only. No appointments, no hassle. Just a clean cut from a barber who takes pride in the craft. Come as you are — we're on HWY 157 beside the bus shop.
+        </p>
+        <div class="hero-actions">
+          <a href="tel:2566168233" class="btn-gold">Call Us →</a>
+          <a href="#services" class="btn-outline">See Prices</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="barber-pole">
+          <div class="barber-pole-inner"></div>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num">100%</div>
+            <div class="hero-stat-label">Recommend<br>on Facebook</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">0</div>
+            <div class="hero-stat-label">Appointments<br>Needed</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">HWY 157</div>
+            <div class="hero-stat-label">Moulton, AL<br>35650</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-inner">
+      <div class="marquee-item">Walk-Ins Welcome</div>
+      <div class="marquee-item">Haircuts</div>
+      <div class="marquee-item">Beard Trims</div>
+      <div class="marquee-item">Fades</div>
+      <div class="marquee-item">Straight Razor Shaves</div>
+      <div class="marquee-item">Kids Cuts</div>
+      <div class="marquee-item">No Appointments Needed</div>
+      <div class="marquee-item">HWY 157 Moulton AL</div>
+      <div class="marquee-item">Walk-Ins Welcome</div>
+      <div class="marquee-item">Haircuts</div>
+      <div class="marquee-item">Beard Trims</div>
+      <div class="marquee-item">Fades</div>
+      <div class="marquee-item">Straight Razor Shaves</div>
+      <div class="marquee-item">Kids Cuts</div>
+      <div class="marquee-item">No Appointments Needed</div>
+      <div class="marquee-item">HWY 157 Moulton AL</div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-eyebrow">Services & Pricing</div>
+        <div class="section-title">Simple prices.<br />No surprises.</div>
+      </div>
+      <div class="section-note">
+        Walk-in only.<br>
+        No appointment needed.
+      </div>
+    </div>
+
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="service-price"><sup>$</sup>20</div>
+        <div class="service-name">Haircut</div>
+        <div class="service-desc">Classic or modern cuts, styled and finished. Clean lines every time.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-price"><sup>$</sup>10</div>
+        <div class="service-name">Beard Trim</div>
+        <div class="service-desc">Shape up and detail your beard with a straight-razor edge.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-price"><sup>$</sup>25</div>
+        <div class="service-name">Cut + Beard</div>
+        <div class="service-desc">The full package — haircut and beard trim together.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-price"><sup>$</sup>15</div>
+        <div class="service-name">Kids Cut</div>
+        <div class="service-desc">Patient, professional cuts for the little ones. Ages 10 and under.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-price"><sup>$</sup>10</div>
+        <div class="service-name">Neck Cleanup</div>
+        <div class="service-desc">Keep it tight between cuts with a straight-razor neck cleanup.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-price">Ask</div>
+        <div class="service-name">Specialty Styles</div>
+        <div class="service-desc">Designs, hard parts, or anything custom — just ask and we'll quote you.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WALK-IN CALLOUT -->
+  <div id="walkin">
+    <div class="walkin-inner">
+      <div>
+        <div class="walkin-headline">Walk right in.<br>No appointment needed.</div>
+        <div class="walkin-sub">Small-town barbershop. Big on quality.</div>
+      </div>
+      <div class="walkin-details">
+        <div class="walkin-detail">
+          <div class="walkin-detail-label">Phone</div>
+          <div class="walkin-detail-val">(256) 616-8233</div>
+        </div>
+        <div class="walkin-detail">
+          <div class="walkin-detail-label">Location</div>
+          <div class="walkin-detail-val">HWY 157, Moulton</div>
+        </div>
+        <div class="walkin-detail">
+          <div class="walkin-detail-label">Style</div>
+          <div class="walkin-detail-val">Walk-in Only</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-inner">
+      <div class="about-visual reveal">
+        <div class="about-img-frame">
+          <div class="barber-deco">✂</div>
+          <div class="about-badge">
+            <span class="badge-num">100%</span>
+            <span class="badge-label">Recommend</span>
+          </div>
+          <div class="about-img-text">
+            <div class="about-img-name">The Barber Shop</div>
+            <div class="about-img-sub">HWY 157 · Moulton, AL</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-text reveal">
+        <div class="section-eyebrow">About Us</div>
+        <div class="section-title">Small town barber.<br />Big on craft.</div>
+        <div class="about-body">
+          <p>
+            We're a walk-in only barbershop right on HWY 157 in Moulton — beside the bus shop. We keep it simple: come in, get a clean cut, leave looking sharp.
+          </p>
+          <p>
+            No fancy app, no waitlist, no nonsense. Just a real barber who cares about the work.
+          </p>
+        </div>
+        <div class="about-detail">
+          <span class="about-detail-icon">✦</span>
+          <span class="about-detail-text">Walk-in only — no appointments, no waiting on hold.</span>
+        </div>
+        <div class="about-detail">
+          <span class="about-detail-icon">✦</span>
+          <span class="about-detail-text">100% recommended by our customers on Facebook.</span>
+        </div>
+        <div class="about-detail">
+          <span class="about-detail-icon">✦</span>
+          <span class="about-detail-text">Right on HWY 157 — easy to find, easy to get to.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOURS -->
+  <section id="hours">
+    <div class="hours-inner">
+      <div class="reveal">
+        <div class="section-eyebrow">Hours</div>
+        <div class="section-title">Come see us.</div>
+        <p style="font-size:13px;color:var(--text-dim);margin-top:12px;line-height:1.7">
+          No appointment needed — just walk in during our regular hours. Call ahead if you're not sure we're open.
+        </p>
+      </div>
+      <div class="reveal">
+        <div class="hours-table">
+          <div class="hours-row">
+            <span class="hours-day">Monday</span>
+            <span class="hours-time">Hours may vary — call ahead</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Tuesday</span>
+            <span class="hours-time">Hours may vary — call ahead</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Wednesday</span>
+            <span class="hours-time">Hours may vary — call ahead</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Thursday</span>
+            <span class="hours-time">Hours may vary — call ahead</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Friday</span>
+            <span class="hours-time">Hours may vary — call ahead</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Saturday</span>
+            <span class="hours-time">Hours may vary — call ahead</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Sunday</span>
+            <span class="hours-closed">Closed</span>
+          </div>
+        </div>
+        <div class="hours-note">
+          📞 Call us at (256) 616-8233 for current hours — we keep it flexible.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">
+        The Barber Shop
+        <span class="footer-logo-sub">Moulton, Alabama</span>
+      </div>
+      <div class="footer-info">
+        13838 AL-157<br>
+        Moulton, AL 35650<br>
+        <a href="tel:2566168233">(256) 616-8233</a>
+      </div>
+      <div class="footer-info">
+        Walk-Ins Only<br>
+        No Appointment Needed<br>
+        <span style="color:var(--text-dim)">Beside the bus shop on HWY 157</span>
+      </div>
+    </div>
+    <div class="footer-copy">
+      <span>© 2026 The Barber Shop · Moulton, AL</span>
+      <span style="color:var(--gold-dim)">Site by NotFound Designs</span>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(r => obs.observe(r));
+  </script>
+</body>
+</html>

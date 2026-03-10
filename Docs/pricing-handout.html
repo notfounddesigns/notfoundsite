@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NotFound Designs — Pricing</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet" />
+  <style>
+    @page { size: letter portrait; margin: 0; }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: #fff;
+      color: #1a1e2e;
+      width: 8.5in;
+      min-height: 11in;
+      margin: 0 auto;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: #0a0c12;
+      padding: 36px 48px 32px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 22px; font-weight: 700;
+      color: #dde3f8;
+      display: flex; flex-direction: column; gap: 3px;
+    }
+    .logo-tag {
+      font-size: 9px; color: #353a5c; letter-spacing: 0.25em; text-transform: uppercase;
+    }
+    .logo-lockup { display: flex; align-items: center; }
+    .logo .b { color: #7aa8f0; font-weight: 300; font-size: 26px; line-height: 1; }
+    .logo .bang { color: #7aa8f0; }
+    .logo .d { color: #9ea5cc; font-weight: 300; }
+
+    .header-contact {
+      text-align: right;
+      font-size: 11px; color: #5a618a; line-height: 1.7;
+    }
+    .header-contact strong { color: #9ea5cc; display: block; margin-bottom: 2px; }
+
+    /* ── HERO BAND ── */
+    .hero-band {
+      background: #4a7fd4;
+      padding: 18px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .hero-band-headline {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 15px; font-weight: 700; color: #fff; letter-spacing: -0.01em;
+    }
+    .hero-band-sub {
+      font-size: 10px; color: rgba(255,255,255,0.75); letter-spacing: 0.1em;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .content {
+      padding: 40px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    /* ── PLAN CARDS ── */
+    .plan {
+      border: 1px solid #e0e4f0;
+      padding: 28px 24px;
+      position: relative;
+    }
+    .plan.featured {
+      background: #0a0c12;
+      border-color: #242840;
+    }
+
+    .plan-badge {
+      position: absolute; top: -1px; left: 20px;
+      background: #4a7fd4; color: #fff;
+      font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 4px 10px;
+    }
+
+    .plan-name {
+      font-size: 14px; font-weight: 600; letter-spacing: 0.2em;
+      color: #4a7fd4; margin-bottom: 12px;
+    }
+
+    .plan-price {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 48px; font-weight: 700; color: #0f1225;
+      line-height: 1; margin-bottom: 4px;
+    }
+    .plan.featured .plan-price { color: #dde3f8; }
+
+    .plan-price sup { font-size: 18px; vertical-align: super; font-weight: 400; }
+    .plan-price span { font-size: 13px; font-weight: 300; color: #8a93b8; }
+
+    .plan-desc {
+      font-size: 10px; color: #6b7299; line-height: 1.6; margin: 12px 0 18px;
+    }
+    .plan.featured .plan-desc { color: #5a618a; }
+
+    .plan-features { list-style: none; margin-bottom: 20px; }
+    .plan-feature {
+      font-size: 10px; color: #2a3060;
+      padding: 7px 0; border-bottom: 1px solid #edf0f9;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .plan.featured .plan-feature { color: #9ea5cc; border-color: #1e2130; }
+    .plan-feature::before { content: '→'; color: #4a7fd4; font-size: 9px; flex-shrink: 0; }
+
+    .plan-cta {
+      display: block; text-align: center;
+      padding: 11px;
+      font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid #c0cce8; color: #4a7fd4;
+    }
+    .plan.featured .plan-cta {
+      background: #4a7fd4; color: #fff; border-color: #4a7fd4;
+    }
+
+    /* ── SETUP FEE NOTICE ── */
+    .setup-notice {
+      grid-column: span 2;
+      background: #f4f6fb;
+      border: 1px solid #e0e4f0;
+      padding: 14px 20px;
+      display: flex; align-items: center; gap: 12px;
+      font-size: 10px; color: #5a618a;
+    }
+    .setup-notice strong { color: #1a1e2e; }
+    .setup-notice::before {
+      content: '!'; width: 22px; height: 22px;
+      background: #4a7fd4; color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; flex-shrink: 0;
+    }
+
+    /* ── WHAT'S INCLUDED STRIP ── */
+    .included {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 4px;
+    }
+
+    .included-item {
+      background: #f4f6fb;
+      padding: 16px 14px;
+      text-align: center;
+    }
+
+    .included-icon {
+      font-size: 18px; margin-bottom: 6px;
+    }
+
+    .included-label {
+      font-size: 9px; font-weight: 600; color: #2a3060;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .included-desc {
+      font-size: 9px; color: #8a93b8; line-height: 1.5;
+    }
+
+    /* ── PROCESS SECTION ── */
+    .process-section {
+      grid-column: span 2;
+      margin-top: 4px;
+      border: 1px solid #e0e4f0;
+      padding: 20px 20px 18px;
+    }
+
+    .section-label {
+      font-size: 9px; color: #4a7fd4; letter-spacing: 0.3em;
+      text-transform: uppercase; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-label::before { content: ''; width: 20px; height: 1px; background: #4a7fd4; }
+
+    .process-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .step { display: flex; gap: 10px; align-items: flex-start; }
+
+    .step-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 18px; font-weight: 700; color: #e0e4f0;
+      line-height: 1; flex-shrink: 0; width: 28px;
+    }
+
+    .step-text { font-size: 9px; color: #6b7299; line-height: 1.5; }
+    .step-text strong { color: #2a3060; display: block; margin-bottom: 2px; }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #0a0c12;
+      padding: 20px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: auto;
+    }
+
+    .footer-logo {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px; font-weight: 700; color: #9ea5cc;
+    }
+    .footer-logo .b { color: #7aa8f0; font-weight: 300; font-size: 15px; }
+    .footer-logo .bang { color: #7aa8f0; }
+
+    .footer-info {
+      text-align: right;
+      font-size: 10px; color: #353a5c; line-height: 1.6;
+    }
+
+    .footer-tagline {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; font-style: italic;
+      color: #5a618a; text-align: center;
+    }
+
+    /* Print styles */
+    @media print {
+      body { width: 100%; }
+      .plan-cta { border: 1pt solid #c0cce8 !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo">
+      <span class="logo-tag">&lt;!-- web design studio --&gt;</span>
+      <span class="logo-lockup">
+        <span class="b">[</span><span class="bang">!</span>Found
+        <span style="display:inline-block;width:4px"></span>
+        <span class="d">Designs</span><span class="b">]</span>
+      </span>
+    </div>
+    <div class="header-contact">
+      <strong>hello@notfounddesigns.com</strong>
+      notfounddesigns.com &nbsp;·&nbsp; Moulton, AL
+    </div>
+  </div>
+
+  <!-- HERO BAND -->
+  <div class="hero-band">
+    <div>
+      <div class="hero-band-headline">Custom Websites for Local Business</div>
+      <div class="hero-band-sub">No templates. No page builders. Just clean, fast, professional sites.</div>
+    </div>
+    <div style="text-align:right;font-size:10px;color:rgba(255,255,255,0.6);line-height:1.6">
+      Starting at <strong style="font-size:18px;font-family:'IBM Plex Mono',monospace;color:#fff;display:block">$149<span style="font-size:11px;font-weight:300">/mo</span></strong>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="content">
+
+    <!-- SETUP NOTICE -->
+    <div class="setup-notice">
+      All plans include a <strong>&nbsp;$250 one-time setup fee&nbsp;</strong> — this covers design, build, domain configuration, and launch.
+    </div>
+
+    <!-- BASE PLAN -->
+    <div class="plan">
+      <div class="plan-name">[Base]</div>
+      <div class="plan-price"><sup>$</sup>149<span>/mo</span></div>
+      <div class="plan-desc">For local businesses that need a clean, professional web presence without the complexity.</div>
+      <ul class="plan-features">
+        <li class="plan-feature">Up to 4 pages</li>
+        <li class="plan-feature">Custom design (no templates)</li>
+        <li class="plan-feature">Domain &amp; hosting included</li>
+        <li class="plan-feature">Business email setup</li>
+        <li class="plan-feature">Standard contact form</li>
+        <li class="plan-feature">Mobile-friendly &amp; fast</li>
+        <li class="plan-feature">Basic SEO setup</li>
+        <li class="plan-feature">Edits within 5 business days</li>
+      </ul>
+      <div class="plan-cta">Get Started</div>
+    </div>
+
+    <!-- LAUNCH PLAN -->
+    <div class="plan featured">
+      <div class="plan-badge">Most Popular</div>
+      <div class="plan-name">[Launch]</div>
+      <div class="plan-price"><sup>$</sup>199<span>/mo</span></div>
+      <div class="plan-desc">The full package for businesses ready to stand out. More pages, faster support, deeper integrations.</div>
+      <ul class="plan-features">
+        <li class="plan-feature">Up to 8 pages</li>
+        <li class="plan-feature">Custom design (no templates)</li>
+        <li class="plan-feature">Domain &amp; hosting included</li>
+        <li class="plan-feature">Business email setup</li>
+        <li class="plan-feature">Contact &amp; booking forms</li>
+        <li class="plan-feature">Full SEO optimization</li>
+        <li class="plan-feature">Google Business integration</li>
+        <li class="plan-feature">Edits within 2 business days</li>
+      </ul>
+      <div class="plan-cta">Get Started</div>
+    </div>
+
+    <!-- WHAT'S ALWAYS INCLUDED -->
+    <div class="included">
+      <div class="included-item">
+        <div class="included-icon">⚡</div>
+        <div class="included-label">Fast Load Times</div>
+        <div class="included-desc">Hand-coded means no bloated builders slowing you down</div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">📱</div>
+        <div class="included-label">Mobile Friendly</div>
+        <div class="included-desc">Looks great on phones, tablets, and desktops</div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">🔍</div>
+        <div class="included-label">SEO Ready</div>
+        <div class="included-desc">Built so search engines can actually find you</div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">🔄</div>
+        <div class="included-label">No Long Contracts</div>
+        <div class="included-desc">Cancel anytime. 30-day notice. No strings attached.</div>
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="process-section">
+      <div class="section-label">How it works</div>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-text"><strong>Reach Out</strong>Fill out the quick form or send an email. We'll reply within 1 business day.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-text"><strong>Onboarding</strong>We gather your logo, content, colors, and goals. Simple shared doc — no tech skills needed.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-text"><strong>Build &amp; Review</strong>We build your site and share a preview. You give feedback. We refine until it's right.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-text"><strong>Launch</strong>Your site goes live. Billing starts. We handle all hosting, domain, and ongoing updates.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-logo">
+      <span class="b">[</span><span class="bang">!</span>Found
+      <span style="display:inline-block;width:4px"></span>
+      <span style="color:#9ea5cc;font-weight:300">Designs</span><span class="b">]</span>
+    </div>
+    <div class="footer-tagline">
+      !Found => <em style="color:#7aa8f0">We can fix that.</em>
+    </div>
+    <div class="footer-info">
+      hello@notfounddesigns.com<br>
+      notfounddesigns.com
+    </div>
+  </div>
+
+</body>
+</html>
