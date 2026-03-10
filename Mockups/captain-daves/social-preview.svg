@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Captain Dave's social preview</title>
+  <desc id="desc">Promotional preview card for Captain Dave's seafood restaurant mockup in Moulton, Alabama.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#162947" />
+      <stop offset="100%" stop-color="#25446f" />
+    </linearGradient>
+    <radialGradient id="glow" cx="78%" cy="24%" r="60%">
+      <stop offset="0%" stop-color="#e06030" stop-opacity="0.32" />
+      <stop offset="100%" stop-color="#e06030" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#glow)" />
+  <circle cx="885" cy="315" r="160" fill="none" stroke="#f8f5ed" stroke-opacity="0.15" stroke-width="2" />
+  <circle cx="885" cy="315" r="110" fill="none" stroke="#c85528" stroke-opacity="0.35" stroke-width="2" stroke-dasharray="8 10" />
+  <line x1="885" y1="155" x2="885" y2="475" stroke="#f8f5ed" stroke-opacity="0.1" />
+  <line x1="725" y1="315" x2="1045" y2="315" stroke="#f8f5ed" stroke-opacity="0.1" />
+  <text x="140" y="196" fill="#b8902e" font-family="Libre Franklin, sans-serif" font-size="24" letter-spacing="8">MOULTON, ALABAMA</text>
+  <text x="140" y="300" fill="#f8f5ed" font-family="Merriweather, serif" font-size="86" font-weight="700">Captain Dave's</text>
+  <text x="140" y="372" fill="#e06030" font-family="Merriweather, serif" font-size="52" font-style="italic">Seafood and Southern Cooking</text>
+  <text x="140" y="448" fill="#f8f5ed" fill-opacity="0.72" font-family="Libre Franklin, sans-serif" font-size="28">14541 Court St  •  Tue-Sat 11AM-8PM  •  (256) 410-3558</text>
+  <text x="885" y="335" text-anchor="middle" fill="#f8f5ed" font-family="Merriweather, serif" font-size="104">⚓</text>
+</svg>

@@ -587,6 +587,12 @@ body.light .pricing-card.featured .pricing-price { color: #fff; }
   cursor: none;
 }
 
+a.portfolio-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
 .portfolio-card.wide {
   grid-column: span 2; aspect-ratio: 16/6;
 }
@@ -644,6 +650,13 @@ body.light .pricing-card.featured .pricing-price { color: #fff; }
 
 .portfolio-card:hover .portfolio-overlay { opacity: 1; }
 
+.portfolio-link-card:focus-visible {
+  outline: 2px solid var(--accent2);
+  outline-offset: 4px;
+}
+
+.portfolio-link-card:focus-visible .portfolio-overlay { opacity: 1; }
+
 .portfolio-tag {
   font-size: 9px; color: var(--accent2);
   letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 6px;
@@ -655,6 +668,14 @@ body.light .pricing-card.featured .pricing-price { color: #fff; }
 }
 
 .portfolio-desc { font-size: 11px; color: var(--text-dim); }
+
+.portfolio-cta {
+  margin-top: 12px;
+  font-size: 10px;
+  color: var(--text-bright);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
 
 .theme-hvac { background: linear-gradient(135deg, #0d1f35, #1a3a5c); }
 .theme-salon { background: linear-gradient(135deg, #1a1020, #3d1f4a); }

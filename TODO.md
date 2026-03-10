@@ -16,7 +16,7 @@
         - Facebook: https://www.facebook.com/profile.php?id=100076033911925#
         - Address: 13838 AL-157 , Moulton, AL, United States, 35650
         - Phone #: (256) 616-8233
-    - [ ] Create mockup site for Captain Dave's restaraunt in Moulton, AL
+    - [X] Create mockup site for Captain Dave's restaraunt in Moulton, AL
         - Facebook: https://www.facebook.com/captaindavesoncourt/
 
 ### Template / Mockup Notes
