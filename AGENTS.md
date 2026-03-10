@@ -4,7 +4,9 @@
 
 ### Core Principles
 
-Every design should be **unique, intentional, and unforgettable**. Do not reference, borrow from, or build upon any prior designs or websites created in previous conversations. Each project is a blank slate — fresh aesthetic, fresh palette, fresh layout logic.
+Every design should be **unique, intentional, and unforgettable**. Do not reference, borrow from, or build upon any prior designs or websites created in previous conversations. Each project is a blank slate - fresh aesthetic, fresh palette, fresh layout logic.
+
+Mockups and templates must also be visually and structurally distinct from the main NotFound site in this repo (`/index.html`, `/styles.css`, `/app.js`). Do not reuse its layout system, section sequencing, motion language, typography stack, component styling, browser-mockup treatment, or a "same site with different colors" approach.
 
 ---
 
@@ -24,16 +26,16 @@ Before writing any code, commit to a clear aesthetic direction by answering:
 **Typography**
 - Choose fonts that are distinctive, characterful, and unexpected. Pair a strong display font with a refined body font.
 - Never use: Inter, Roboto, Arial, or generic system fonts.
-- Google Fonts, Adobe Fonts, and variable fonts are all valid sources — choose based on what serves the aesthetic.
+- Google Fonts, Adobe Fonts, and variable fonts are all valid sources - choose based on what serves the aesthetic.
 
 **Color & Theme**
 - Use CSS custom properties (`--var`) for all palette values.
 - Commit to a dominant color story with sharp contrast accents. Avoid timid, evenly-distributed palettes.
-- Vary freely between light and dark themes across projects — never default to one.
+- Vary freely between light and dark themes across projects - never default to one.
 
 **Layout & Composition**
 - Use unexpected spatial arrangements: asymmetry, diagonal flow, overlapping elements, grid-breaking heroes.
-- Apply generous negative space OR controlled density — never aimless middle ground.
+- Apply generous negative space OR controlled density - never aimless middle ground.
 - Responsive behavior must be built in from the start, not retrofitted.
 
 **Motion & Interaction**
@@ -43,7 +45,7 @@ Before writing any code, commit to a clear aesthetic direction by answering:
 
 **Backgrounds & Atmosphere**
 - Create depth with gradient meshes, noise textures, layered transparencies, geometric patterns, or grain overlays.
-- Match the background atmosphere to the overall aesthetic tone — do not default to flat solid colors.
+- Match the background atmosphere to the overall aesthetic tone - do not default to flat solid colors.
 
 ---
 
@@ -54,7 +56,7 @@ Accessibility is a first-class concern, not an afterthought. Full requirements a
 - Use semantic HTML before reaching for ARIA.
 - All text meets WCAG AA contrast (4.5:1 body, 3:1 large text and UI components).
 - Every interactive element is keyboard-reachable and operable.
-- Focus indicators are always visible — never remove `outline` without a replacement.
+- Focus indicators are always visible - never remove `outline` without a replacement.
 - All meaningful images have descriptive `alt` text; decorative images use `alt=""`.
 - All animations respect `@media (prefers-reduced-motion: reduce)`.
 - Every form input has a programmatically associated `<label>`.
@@ -81,7 +83,7 @@ Before launching any page, work through `SEO_CHECKLIST.md` in full.
 
 ### Design Tokens & Component Patterns
 
-At the start of each project, populate [`DESIGN_SYSTEM.md`](./DESIGN_SYSTEM.md) with the color tokens, typography choices, spacing scale, and component patterns for that project. Once populated, all generated UI must use only the tokens defined there — no ad-hoc hex values or arbitrary spacing. Update `DESIGN_SYSTEM.md` whenever new patterns are introduced.
+At the start of each project, populate [`DESIGN_SYSTEM.md`](./DESIGN_SYSTEM.md) with the color tokens, typography choices, spacing scale, and component patterns for that project. Once populated, all generated UI must use only the tokens defined there - no ad-hoc hex values or arbitrary spacing. Update `DESIGN_SYSTEM.md` whenever new patterns are introduced.
 
 ---
 
@@ -89,6 +91,7 @@ At the start of each project, populate [`DESIGN_SYSTEM.md`](./DESIGN_SYSTEM.md) 
 
 - Generic "AI slop" aesthetics: purple gradients on white, card grids with rounded corners and drop shadows, hero sections with a centered headline and a CTA button
 - Reusing font pairings, color palettes, or layout patterns from previously generated designs
+- Reusing the NotFound site's structure or motifs for mockups/templates: fixed developer-style nav, code/editor aesthetic, glowing orb hero, marquee strip, browser-window portfolio cards, stacked metric cards, or the same section rhythm with only a palette swap
 - Defaulting to Space Grotesk, Poppins, or other overused choices
 - Placeholder accessibility (e.g., `alt="image"`, unlabeled icon buttons)
 - SEO afterthoughts (missing meta, non-semantic structure, heading chaos)
