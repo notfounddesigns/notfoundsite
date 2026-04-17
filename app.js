@@ -1,3 +1,7 @@
+// TODO: figure out how to use Resend in the client with a Resend custom template
+// import { Resend } from 'https://cdn.jsdelivr.net/npm/resend@6.12.0/+esm';
+// const resendCl = new Resend('re_HjdEVzPM_7k3x2NkhvoYMhPDF9MvnCiei');
+
 /* ── CUSTOM CURSOR (pointer devices only) ── */
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursorRing');
@@ -33,25 +37,25 @@ if (window.matchMedia('(hover: hover)').matches && cursor && ring) {
 }
 
 /* ── LIGHT / DARK TOGGLE ── */
-const themeToggle = document.getElementById('themeToggle');
-const body = document.body;
+// const themeToggle = document.getElementById('themeToggle');
+// const body = document.body;
 
 // Respect system preference on first load
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-const savedTheme = localStorage.getItem('nfd-theme');
-const initLight = savedTheme === 'light' || (!savedTheme && !prefersDark);
+// const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+// const savedTheme = localStorage.getItem('nfd-theme');
+// const initLight = savedTheme === 'light' || (!savedTheme && !prefersDark);
 
-if (initLight) {
-  body.classList.add('light');
-  themeToggle.textContent = '☾';
-}
+// if (initLight) {
+//   body.classList.add('light');
+//   themeToggle.textContent = '☾';
+// }
 
-themeToggle.addEventListener('click', () => {
-  body.classList.toggle('light');
-  const isLight = body.classList.contains('light');
-  themeToggle.textContent = isLight ? '☾' : '☀';
-  localStorage.setItem('nfd-theme', isLight ? 'light' : 'dark');
-});
+// themeToggle.addEventListener('click', () => {
+//   body.classList.toggle('light');
+//   const isLight = body.classList.contains('light');
+//   themeToggle.textContent = isLight ? '☾' : '☀';
+//   localStorage.setItem('nfd-theme', isLight ? 'light' : 'dark');
+// });
 
 /* ── MOBILE HAMBURGER ── */
 const hamburger = document.getElementById('hamburger');
@@ -112,11 +116,65 @@ backToTop.addEventListener('click', e => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
+function buildEmailHtml(templatePath, variables) {
+  let html = fs.readFileSync(templatePath, 'utf-8');
+  for (const [key, value] of Object.entries(variables)) {
+    html = html.replaceAll(`{{${key}}}`, value ?? '');
+  }
+  return html;
+}
+
+document.getElementById('contactForm').addEventListener('submit', sendContactFormEmail);
+
 /* ── FORM SUBMIT ── */
-function handleSubmit(e) {
+async function sendContactFormEmail(e, formData) {
   e.preventDefault();
+  const { firstName, lastName, businessName, businessEmail, businessType, message } = Object.fromEntries(new FormData(e.target));
+ 
+  const timestamp = new Date().toLocaleString('en-US', {
+    timeZone: 'America/Chicago',
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  }) + ' CT';
+ 
+  // const templatePath = path.resolve('./email-contact-form.html');
+ 
+  // const html = buildEmailHtml(templatePath, {
+  //   firstName,
+  //   lastName,
+  //   businessName,
+  //   businessEmail,
+  //   businessType,
+  //   message,
+  //   timestamp,
+  // });
+  
+  // const { data, error } = await Resend.emails.send({
+  //   from: 'NotFound Designs Inquiry <inquiry@notfounddesigns.com>',
+  //   to: ['dev@notfounddesigns.com'],
+  //   reply_to: businessEmail,
+  //   subject: `[New Inquiry] ${businessName} — ${businessType}`,
+  //   html,
+  // });
+ 
+  // if (error) {
+  //   console.error('Resend error:', error);
+  //   throw new Error(`Failed to send email: ${error.message}`);
+  // }
+  
+  // console.log({ data });
+  
   const btn = e.target.querySelector('.form-submit');
   btn.textContent = '✓ Message Sent';
   btn.style.background = '#27ae60';
   btn.disabled = true;
+  setTimeout(() => {
+    btn.textContent = 'Send Message →';
+    btn.style.background = '#4a7fd4';
+    btn.disabled = false;
+  }, 3000)
 }
